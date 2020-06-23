@@ -55,15 +55,13 @@ monty3.grid(row = 1, column = 0, padx = 8, pady = 4)
     # Tab1內部配置
     ## 輸入區(monty1) ##
     # Radio Button
-Rbtn1 = tk.StringVar()
-# Rbtn2 = tk.StringVar()
+Rbtn1 = tk.IntVar()
 RadioP = ttk.Radiobutton(monty1, value = 1, variable = Rbtn1).grid(row = 1, column = 0, padx = 5, pady = 5)
 RadioH = ttk.Radiobutton(monty1, value = 2, variable = Rbtn1).grid(row = 2, column = 0, padx = 5, pady = 5)
 Nomads_RadioP = ttk.Radiobutton(monty1, value = 1, variable = Rbtn1).grid(row = 1, column = 2, padx = 5, pady = 5)
 Nomads_RadioH = ttk.Radiobutton(monty1, value = 2, variable = Rbtn1).grid(row = 2, column = 2, padx = 5, pady = 5)
 Envoys_RadioP = ttk.Radiobutton(monty1, value = 1, variable = Rbtn1).grid(row = 1, column = 6, padx = 5, pady = 5)
 Envoys_RadioH = ttk.Radiobutton(monty1, value = 2, variable = Rbtn1).grid(row = 2, column = 6, padx = 5, pady = 5)
-x = Rbtn1.get()
     
     # Separator
 Separator1 = ttk.Separator(monty1, orient = "vertical").grid(row = 1, column = 1, rowspan = 2, sticky = "ns")
@@ -82,7 +80,6 @@ Nomads_PQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariab
 Nomads_HQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariable = InputNHQ).grid(row = 2, column = 4, padx = 5, pady = 5)
 Envoys_PQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariable = InputEPQ).grid(row = 1, column = 8, padx = 5, pady = 5)
 Envoys_HQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariable = InputEHQ).grid(row = 2, column = 8, padx = 5, pady = 5)
-InputNPQ = x
 
 
     # Image
