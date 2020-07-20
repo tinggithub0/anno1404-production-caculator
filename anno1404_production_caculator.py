@@ -1,10 +1,8 @@
 import tkinter as tk
 import tkinter.font as tkFont
 import math
-import PIL 
-from PIL import ImageTk, Image
-from tkinter import IntVar
 from tkinter import ttk
+import time
 
 
 root = tk.Tk()
@@ -33,8 +31,76 @@ Summary_table_Orient_image = tk.PhotoImage(file = "D:/python/python-anno1404/ima
 # Summary_table_Occident_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Summary_table_Occident.png")
 
 # button command
-
-
+    # def
+def Caculate_Orient_Go():
+    NPQG = int(InputNPQ.get())
+    EPQG = int(InputEPQ.get())
+    DC = (DatesChosen.current() * 0.25 + 1)
+    MC = (MilkChosen.current() * 0.25 + 1)
+    CaC = (CarpetsChosen.current() * 0.25 + 1)
+    CoC = (CoffeeChosen.current() * 0.25 + 1)
+    PnC = (Pearl_necklacesChosen.current() * 0.25 + 1)
+    PeC = (PerfumeChosen.current() * 0.25 + 1)
+    MaC = (MarzipanChosen.current() * 0.25 + 1)
+    
+    # BQ set
+    if EPQG >= 4360: # 7 + 7
+        DatesBQ.set(round((((NPQG / 450) + (EPQG / 600)) / DC), 2))
+        MilkBQ.set(round((((NPQG / 436) + (EPQG / 666)) / MC), 2))
+        CarpetsBQ.set(round((((NPQG / 909) + (EPQG / 1500)) / CaC), 2))
+        CoffeeBQ.set(round(((EPQG / 1000) / CoC), 2))
+        Pearl_necklacesBQ.set(round(((EPQG / 751) / PnC), 2))
+        PerfumeBQ.set(round(((EPQG / 1250) / PeC), 2))
+        MarzipanBQ.set(round(((EPQG / 2453) / MaC), 2))
+    elif EPQG >= 2600: # 6 + 6
+        DatesBQ.set(round((((NPQG / 450) + (EPQG / 600)) / DC), 2))
+        MilkBQ.set(round((((NPQG / 436) + (EPQG / 666)) / MC), 2))
+        CarpetsBQ.set(round((((NPQG / 909) + (EPQG / 1500)) / CaC), 2))
+        CoffeeBQ.set(round(((EPQG / 1000) / CoC), 2))
+        Pearl_necklacesBQ.set(round(((EPQG / 751) / PnC), 2))
+        PerfumeBQ.set(round(((EPQG / 1250) / PeC), 2))
+        MarzipanBQ.set("")
+    elif EPQG >= 1040: # 5 + 5
+        DatesBQ.set(round((((NPQG / 450) + (EPQG / 600)) / DC), 2))
+        MilkBQ.set(round((((NPQG / 436) + (EPQG / 666)) / MC), 2))
+        CarpetsBQ.set(round((((NPQG / 909) + (EPQG / 1500)) / CaC), 2))
+        CoffeeBQ.set(round(((EPQG / 1000) / CoC), 2))
+        Pearl_necklacesBQ.set(round(((EPQG / 751) / PnC), 2))
+        PerfumeBQ.set("")
+        MarzipanBQ.set("")
+    elif EPQG >= 1: # 4 + 4
+        DatesBQ.set(round((((NPQG / 450) + (EPQG / 600)) / DC), 2))
+        MilkBQ.set(round((((NPQG / 436) + (EPQG / 666)) / MC), 2))
+        CarpetsBQ.set(round((((NPQG / 909) + (EPQG / 1500)) / CaC), 2))
+        CoffeeBQ.set(round(((EPQG / 1000) / CoC), 2))
+        Pearl_necklacesBQ.set("")
+        PerfumeBQ.set("")
+        MarzipanBQ.set("")
+    elif EPQG == 0 and NPQG >= 295: # 3 + 0
+        DatesBQ.set(round((NPQG / 450), 2))
+        MilkBQ.set(round((NPQG / 436), 2))
+        CarpetsBQ.set(round((NPQG / 909), 2))
+        CoffeeBQ.set("")
+        Pearl_necklacesBQ.set("")
+        PerfumeBQ.set("")
+        MarzipanBQ.set("")
+    elif EPQG == 0 and NPQG >= 145: # 2 + 0
+        DatesBQ.set(round((NPQG / 450), 2))
+        MilkBQ.set(round((NPQG / 436), 2))
+        CarpetsBQ.set("")
+        CoffeeBQ.set("")
+        Pearl_necklacesBQ.set("")
+        PerfumeBQ.set("")
+        MarzipanBQ.set("")
+    else: # 1 + 0
+        DatesBQ.set(round((NPQG / 450), 2))
+        MilkBQ.set("")
+        CarpetsBQ.set("")
+        CoffeeBQ.set("")
+        Pearl_necklacesBQ.set("")
+        PerfumeBQ.set("")
+        MarzipanBQ.set("")
+    
 # Tab Control
 tabControl = ttk.Notebook(root)          # Create Tab Control
 tab1 = ttk.Frame(tabControl)            # Create a tab 
@@ -61,6 +127,7 @@ def convert0(Rbtn1):
     Rbtn1 = Rbtn1.get()
 
 Rbtn1 = tk.IntVar()
+Rbtn1.set(2)
 RadioP = ttk.Radiobutton(monty1, value = 1, variable = Rbtn1).grid(row = 1, column = 0, padx = 5, pady = 5)
 RadioH = ttk.Radiobutton(monty1, value = 2, variable = Rbtn1).grid(row = 2, column = 0, padx = 5, pady = 5)
 Nomads_RadioP = ttk.Radiobutton(monty1, value = 1, variable = Rbtn1).grid(row = 1, column = 2, padx = 5, pady = 5)
@@ -76,12 +143,15 @@ Separator2 = ttk.Separator(monty1, orient = "vertical").grid(row = 1, column = 5
     # Input  
         # PQ.HQ convert by Radiobutton def
 def convert(*args):
-    if Rbtn1.get() == 1:
-        InputNHQ.set((InputNPQ.get())/15)
-        InputEHQ.set((InputEPQ.get())/15)
-    else:
-        InputNPQ.set((InputNHQ.get())*15)
-        InputEPQ.set((InputEHQ.get())*15)
+    try:
+        if Rbtn1.get() == 1:
+            InputNHQ.set((InputNPQ.get())/15)
+            InputEHQ.set((InputEPQ.get())/15)
+        else:
+            InputNPQ.set((InputNHQ.get())*15)
+            InputEPQ.set((InputEHQ.get())*15)
+    except Exception:
+        time.sleep(0.01)
 
 InputNPQ = tk.IntVar()
 InputNPQ.set(0)
@@ -110,7 +180,7 @@ Envoys_PI1 = tk.Label(monty1, image = People_image, relief = "ridge").grid(row =
 Envoys_HI = tk.Label(monty1, image = House_image, relief = "ridge").grid(row = 2, column = 7, padx = 5, pady = 5)
 
     # caculate1 計算牧民系統
-Caculate_Orient = tk.Button(monty1, font = fontsize, text = "Go！").grid(row = 2, column = 9, padx = 5, pady = 5)
+Caculate_Orient = tk.Button(monty1, font = fontsize, text = "Go！", command = Caculate_Orient_Go).grid(row = 2, column = 9, padx = 5, pady = 5)
 
     ## 輸入區(monty1) end ##
 
