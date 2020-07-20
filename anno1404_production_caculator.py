@@ -32,6 +32,8 @@ House_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/House.png")
 Summary_table_Orient_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Summary_table_Orient.png")
 # Summary_table_Occident_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Summary_table_Occident.png")
 
+# button command
+
 
 # Tab Control
 tabControl = ttk.Notebook(root)          # Create Tab Control
@@ -55,6 +57,9 @@ monty3.grid(row = 1, column = 0, padx = 8, pady = 4)
     # Tab1內部配置
     ## 輸入區(monty1) ##
     # Radio Button
+def convert0(Rbtn1):
+    Rbtn1 = Rbtn1.get()
+
 Rbtn1 = tk.IntVar()
 RadioP = ttk.Radiobutton(monty1, value = 1, variable = Rbtn1).grid(row = 1, column = 0, padx = 5, pady = 5)
 RadioH = ttk.Radiobutton(monty1, value = 2, variable = Rbtn1).grid(row = 2, column = 0, padx = 5, pady = 5)
@@ -62,20 +67,34 @@ Nomads_RadioP = ttk.Radiobutton(monty1, value = 1, variable = Rbtn1).grid(row = 
 Nomads_RadioH = ttk.Radiobutton(monty1, value = 2, variable = Rbtn1).grid(row = 2, column = 2, padx = 5, pady = 5)
 Envoys_RadioP = ttk.Radiobutton(monty1, value = 1, variable = Rbtn1).grid(row = 1, column = 6, padx = 5, pady = 5)
 Envoys_RadioH = ttk.Radiobutton(monty1, value = 2, variable = Rbtn1).grid(row = 2, column = 6, padx = 5, pady = 5)
+Rbtn1.trace("w", lambda name, index, mode, Rbtn1 = Rbtn1: convert0(Rbtn1))
     
     # Separator
 Separator1 = ttk.Separator(monty1, orient = "vertical").grid(row = 1, column = 1, rowspan = 2, sticky = "ns")
 Separator2 = ttk.Separator(monty1, orient = "vertical").grid(row = 1, column = 5, rowspan = 2, sticky = "ns")
     
-    # Input
+    # Input  
+        # PQ.HQ convert by Radiobutton def
+def convert(*args):
+    if Rbtn1.get() == 1:
+        InputNHQ.set((InputNPQ.get())/15)
+        InputEHQ.set((InputEPQ.get())/15)
+    else:
+        InputNPQ.set((InputNHQ.get())*15)
+        InputEPQ.set((InputEHQ.get())*15)
+
 InputNPQ = tk.IntVar()
 InputNPQ.set(0)
+InputNPQ.trace("w", lambda name, index, mode, InputNPQ = InputNPQ: convert(InputNPQ))
 InputNHQ = tk.IntVar()
 InputNHQ.set(0)
+InputNHQ.trace("w", lambda name, index, mode, InputNHQ = InputNHQ: convert(InputNHQ))
 InputEPQ = tk.IntVar()
 InputEPQ.set(0)
+InputEPQ.trace("w", lambda name, index, mode, InputEPQ = InputEPQ: convert(InputEPQ))
 InputEHQ = tk.IntVar()
 InputEHQ.set(0)
+InputEHQ.trace("w", lambda name, index, mode, InputEHQ = InputEHQ: convert(InputEHQ))
 Nomads_PQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariable = InputNPQ).grid(row = 1, column = 4, padx = 5, pady = 5)
 Nomads_HQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariable = InputNHQ).grid(row = 2, column = 4, padx = 5, pady = 5)
 Envoys_PQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariable = InputEPQ).grid(row = 1, column = 8, padx = 5, pady = 5)
@@ -95,7 +114,7 @@ Caculate_Orient = tk.Button(monty1, font = fontsize, text = "Go！").grid(row = 
 
     ## 輸入區(monty1) end ##
 
-    ## 輸出區(monty2) ##
+    ## 輸出區(monty2) ##    
     # 設定
 Persent = ["DatesPersent", "MilkPersent", "CarpetsPersent", "CoffeePersent", "Pearl_necklacesPersent", "PerfumePersent", "MarzipanPersent"]
 Persent = tk.StringVar()
@@ -147,15 +166,20 @@ Perfume1 = tk.Label(monty2, image = Perfume_image, relief = "ridge").grid(row = 
 Marzipan1 = tk.Label(monty2, image = Marzipan_image, relief = "ridge").grid(row = 6, column = 1, padx = 5, pady = 5)
 
     # Caculate Result
-BuildQuantity = ["DatesBQ", "MilkBQ", "CarpetsBQ", "CoffeeBQ", "Pearl_necklacesBQ", "PerfumeBQ", "MarzipanBQ"]
-BuildQuantity = IntVar()
-Dates_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = "DatesBQ").grid(row = 0, column = 2, padx = 5, pady = 5)
-Milk_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = "MilkBQ").grid(row = 1, column = 2, padx = 5, pady = 5)
-Carpets_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = "CarpetsBQ").grid(row = 2, column = 2, padx = 5, pady = 5)
-Coffee_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = "CoffeeBQ").grid(row = 3, column = 2, padx = 5, pady = 5)
-Pearl_necklaces_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = "Pearl_necklacesBQ").grid(row = 4, column = 2, padx = 5, pady = 5)
-Perfume_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = "PerfumeBQ").grid(row = 5, column = 2, padx = 5, pady = 5)
-Marzipan_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = "MarzipanBQ").grid(row = 6, column = 2, padx = 5, pady = 5)
+DatesBQ = tk.StringVar()
+Dates_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = DatesBQ).grid(row = 0, column = 2, padx = 5, pady = 5)
+MilkBQ = tk.StringVar()
+Milk_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = MilkBQ).grid(row = 1, column = 2, padx = 5, pady = 5)
+CarpetsBQ = tk.StringVar()
+Carpets_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = CarpetsBQ).grid(row = 2, column = 2, padx = 5, pady = 5)
+CoffeeBQ = tk.StringVar()
+Coffee_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = CoffeeBQ).grid(row = 3, column = 2, padx = 5, pady = 5)
+Pearl_necklacesBQ = tk.StringVar()
+Pearl_necklaces_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = Pearl_necklacesBQ).grid(row = 4, column = 2, padx = 5, pady = 5)
+PerfumeBQ = tk.StringVar()
+Perfume_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = PerfumeBQ).grid(row = 5, column = 2, padx = 5, pady = 5)
+MarzipanBQ = tk.StringVar()
+Marzipan_BQ = tk.Label(monty2, font = fontsize, width = 5, bd = 3, textvariable = MarzipanBQ).grid(row = 6, column = 2, padx = 5, pady = 5)
 
     ## 輸出區(monty2) end ##
 
