@@ -11,7 +11,7 @@ root = tk.Tk()
 fontsize = tkFont.Font(family = "Microsoft JhengHei", size = 15)
 root.title("Anno 1404 caculator")
 root.resizable(0,0)
-root.geometry("1200x800")
+root.geometry("1000x700")
 # root.configure(background = "thistle2")
 root.iconbitmap(r"D:/python/python-anno1404/images/anno1404_icon.ico")
 
@@ -29,6 +29,60 @@ People_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/People.png
 House_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/House.png")
 Summary_table_Orient_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Summary_table_Orient.png")
 # Summary_table_Occident_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Summary_table_Occident.png")
+
+# Create ToolTip
+class CreateToolTip(object):
+    """
+    create a tooltip for a given widget
+    """
+    def __init__(self, widget, text='widget info'):
+        self.waittime = 300     #miliseconds
+        # self.wraplength = 180   #pixels
+        self.widget = widget
+        self.text = text
+        self.widget.bind("<Enter>", self.enter)
+        self.widget.bind("<Leave>", self.leave)
+        # self.widget.bind("<ButtonPress>", self.leave)
+        self.id = None
+        self.tw = None
+
+    def enter(self, event=None):
+        self.schedule()
+
+    def leave(self, event=None):
+        self.unschedule()
+        self.hidetip()
+
+    def schedule(self):
+        self.unschedule()
+        self.id = self.widget.after(self.waittime, self.showtip)
+
+    def unschedule(self):
+        id = self.id
+        self.id = None
+        if id:
+            self.widget.after_cancel(id)
+
+    def showtip(self, event=None):
+        x = y = 0
+        x, y, cx, cy = self.widget.bbox("insert")
+        x += self.widget.winfo_rootx() + 40
+        y += self.widget.winfo_rooty() + 40
+        # creates a toplevel window
+        self.tw = tk.Toplevel(self.widget)
+        # Leaves only the label and removes the app window
+        self.tw.wm_overrideredirect(True)
+        self.tw.wm_geometry("+%d+%d" % (x, y))
+        label = tk.Label(self.tw, text=self.text, justify='left',
+                       background="#ffffff", relief='solid', borderwidth=1,
+                       )
+        label.pack(ipadx=1)
+
+    def hidetip(self):
+        tw = self.tw
+        self.tw= None
+        if tw:
+            tw.destroy()
 
 # button command
     # def
@@ -172,12 +226,19 @@ Envoys_HQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariab
 
 
     # Image
-Nomads1 = tk.Label(monty1, image = Nomads_image, relief = "ridge").grid(row = 0, column = 2, columnspan = 2, padx = 5, pady = 5)
-Envoys1 = tk.Label(monty1, image = Envoys_image, relief = "ridge").grid(row = 0, column = 6, columnspan = 2, padx = 5, pady = 5)
+Nomads1 = tk.Label(monty1, image = Nomads_image, relief = "ridge")
+Nomads1.grid(row = 0, column = 2, columnspan = 2, padx = 5, pady = 5)
+Envoys1 = tk.Label(monty1, image = Envoys_image, relief = "ridge")
+Envoys1.grid(row = 0, column = 6, columnspan = 2, padx = 5, pady = 5)
 Nomads_PI1 = tk.Label(monty1, image = People_image, relief = "ridge").grid(row = 1, column = 3, padx = 5, pady = 5)
 Nomads_HI = tk.Label(monty1, image = House_image, relief = "ridge").grid(row = 2, column = 3, padx = 5, pady = 5)
 Envoys_PI1 = tk.Label(monty1, image = People_image, relief = "ridge").grid(row = 1, column = 7, padx = 5, pady = 5)
 Envoys_HI = tk.Label(monty1, image = House_image, relief = "ridge").grid(row = 2, column = 7, padx = 5, pady = 5)
+
+        # Image Tool Tips
+Nomads1TT = CreateToolTip(Nomads1, "牧民")
+Envoys1TT = CreateToolTip(Envoys1, "牧主")
+
 
     # caculate1 計算牧民系統
 Caculate_Orient = tk.Button(monty1, font = fontsize, text = "Go！", command = Caculate_Orient_Go).grid(row = 2, column = 9, padx = 5, pady = 5)
@@ -227,13 +288,29 @@ MarzipanChosen.grid(row = 6, column = 0, padx = 5, pady = 5)
 MarzipanChosen.current(0)
 
     # Image
-Dates1 = tk.Label(monty2, image = Dates_image, relief = "ridge").grid(row = 0, column = 1, padx = 5, pady = 5)
-Milk1 = tk.Label(monty2, image = Milk_image, relief = "ridge").grid(row = 1, column = 1, padx = 5, pady = 5)
-Carpets1 = tk.Label(monty2, image = Carpets_image, relief = "ridge").grid(row = 2, column = 1, padx = 5, pady = 5)
-Coffee1 = tk.Label(monty2, image = Coffee_image, relief = "ridge").grid(row = 3, column = 1, padx = 5, pady = 5)
-Pearl_necklaces1 = tk.Label(monty2, image = Pearl_necklaces_image, relief = "ridge").grid(row = 4, column = 1, padx = 5, pady = 5)
-Perfume1 = tk.Label(monty2, image = Perfume_image, relief = "ridge").grid(row = 5, column = 1, padx = 5, pady = 5)
-Marzipan1 = tk.Label(monty2, image = Marzipan_image, relief = "ridge").grid(row = 6, column = 1, padx = 5, pady = 5)
+Dates1 = tk.Label(monty2, image = Dates_image, relief = "ridge")
+Dates1.grid(row = 0, column = 1, padx = 5, pady = 5)
+Milk1 = tk.Label(monty2, image = Milk_image, relief = "ridge")
+Milk1.grid(row = 1, column = 1, padx = 5, pady = 5)
+Carpets1 = tk.Label(monty2, image = Carpets_image, relief = "ridge")
+Carpets1.grid(row = 2, column = 1, padx = 5, pady = 5)
+Coffee1 = tk.Label(monty2, image = Coffee_image, relief = "ridge")
+Coffee1.grid(row = 3, column = 1, padx = 5, pady = 5)
+Pearl_necklaces1 = tk.Label(monty2, image = Pearl_necklaces_image, relief = "ridge")
+Pearl_necklaces1.grid(row = 4, column = 1, padx = 5, pady = 5)
+Perfume1 = tk.Label(monty2, image = Perfume_image, relief = "ridge")
+Perfume1.grid(row = 5, column = 1, padx = 5, pady = 5)
+Marzipan1 = tk.Label(monty2, image = Marzipan_image, relief = "ridge")
+Marzipan1.grid(row = 6, column = 1, padx = 5, pady = 5)
+
+        # Image Tool Tips
+Dates1TT = CreateToolTip(Dates1, "椰棗")
+Milk1TT = CreateToolTip(Milk1, "羊奶")
+Carpets1TT = CreateToolTip(Carpets1, "織毯")
+Coffee1TT = CreateToolTip(Coffee1, "咖啡")
+Pearl_necklaces1TT = CreateToolTip(Pearl_necklaces1, "珍珠項鍊")
+Perfume1TT = CreateToolTip(Perfume1, "香水")
+Marzipan1TT = CreateToolTip(Marzipan1, "扁桃仁膏")
 
     # Caculate Result
 DatesBQ = tk.StringVar()
@@ -294,17 +371,37 @@ EPPe = tk.Label(monty3, font = fontsize, width = 4, bd = 3, text = 2600).grid(ro
 EPMa = tk.Label(monty3, font = fontsize, width = 4, bd = 3, text = 4360).grid(row = 9, column = 15, padx = 5, pady = 5)
 
     # Image
-Dates2 = tk.Label(monty3, image = Dates_image, relief = "ridge").grid(row = 1, column = 3, padx = 5, pady = 5)
-Milk2 = tk.Label(monty3, image = Milk_image, relief = "ridge").grid(row = 1, column = 5, padx = 5, pady = 5)
-Carpets2 = tk.Label(monty3, image = Carpets_image, relief = "ridge").grid(row = 1, column = 7, padx = 5, pady = 5)
-Coffee2 = tk.Label(monty3, image = Coffee_image, relief = "ridge").grid(row = 1, column = 9, padx = 5, pady = 5)
-Pearl_necklaces2 = tk.Label(monty3, image = Pearl_necklaces_image, relief = "ridge").grid(row = 1, column = 11, padx = 5, pady = 5)
-Perfume2 = tk.Label(monty3, image = Perfume_image, relief = "ridge").grid(row = 1, column = 13, padx = 5, pady = 5)
-Marzipan2 = tk.Label(monty3, image = Marzipan_image, relief = "ridge").grid(row = 1, column = 15, padx = 5, pady = 5)
-Nomads2 = tk.Label(monty3, image = Nomads_image, relief = "ridge").grid(row = 3, column = 1, padx = 5, pady = 5)
+Dates2 = tk.Label(monty3, image = Dates_image, relief = "ridge")
+Dates2.grid(row = 1, column = 3, padx = 5, pady = 5)
+Milk2 = tk.Label(monty3, image = Milk_image, relief = "ridge")
+Milk2.grid(row = 1, column = 5, padx = 5, pady = 5)
+Carpets2 = tk.Label(monty3, image = Carpets_image, relief = "ridge")
+Carpets2.grid(row = 1, column = 7, padx = 5, pady = 5)
+Coffee2 = tk.Label(monty3, image = Coffee_image, relief = "ridge")
+Coffee2.grid(row = 1, column = 9, padx = 5, pady = 5)
+Pearl_necklaces2 = tk.Label(monty3, image = Pearl_necklaces_image, relief = "ridge")
+Pearl_necklaces2.grid(row = 1, column = 11, padx = 5, pady = 5)
+Perfume2 = tk.Label(monty3, image = Perfume_image, relief = "ridge")
+Perfume2.grid(row = 1, column = 13, padx = 5, pady = 5)
+Marzipan2 = tk.Label(monty3, image = Marzipan_image, relief = "ridge")
+Marzipan2.grid(row = 1, column = 15, padx = 5, pady = 5)
+Nomads2 = tk.Label(monty3, image = Nomads_image, relief = "ridge")
+Nomads2.grid(row = 3, column = 1, padx = 5, pady = 5)
 Nomads_PI2 = tk.Label(monty3, image = People_image, relief = "ridge").grid(row = 5, column = 1, padx = 5, pady = 5)
-Envoys2 = tk.Label(monty3, image = Envoys_image, relief = "ridge").grid(row = 7, column = 1, padx = 5, pady = 5)
+Envoys2 = tk.Label(monty3, image = Envoys_image, relief = "ridge")
+Envoys2.grid(row = 7, column = 1, padx = 5, pady = 5)
 Envoys_PI2 = tk.Label(monty3, image = People_image, relief = "ridge").grid(row = 9, column = 1, padx = 5, pady = 5)
+
+        # Image Tool Tips
+Dates2TT = CreateToolTip(Dates2, "椰棗")
+Milk2TT = CreateToolTip(Milk2, "羊奶")
+Carpets2TT = CreateToolTip(Carpets2, "織毯")
+Coffee2TT = CreateToolTip(Coffee2, "咖啡")
+Pearl_necklaces2TT = CreateToolTip(Pearl_necklaces2, "珍珠項鍊")
+Perfume2TT = CreateToolTip(Perfume2, "香水")
+Marzipan2TT = CreateToolTip(Marzipan2, "扁桃仁膏")
+Nomads2TT = CreateToolTip(Nomads2, "牧民")
+Envoys2TT = CreateToolTip(Envoys2, "牧主")
 
     ## 列表區(monty3) end ##
 
