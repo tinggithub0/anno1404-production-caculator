@@ -16,6 +16,7 @@ root.geometry("1000x700")
 root.iconbitmap(r"D:/python/python-anno1404/images/anno1404_icon.ico")
 
 # 載入圖片
+    # 牧豬
 Nomads_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Nomads.png")
 Envoys_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Envoys.png")
 Dates_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Dates.png")
@@ -27,8 +28,27 @@ Perfume_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Perfume.p
 Marzipan_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Marzipan.png")
 People_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/People.png")
 House_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/House.png")
-Summary_table_Orient_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Summary_table_Orient.png")
-# Summary_table_Occident_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Summary_table_Occident.png")
+
+    # 貴豬
+Begger_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Begger.png")
+Peasants_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Peasants.png")
+Citizens_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Citizens.png")
+Patrician_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Patrician.png")
+Nobleman_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Nobleman.png")
+Fish = tk.PhotoImage(file = "D:/python/python-anno1404/images/Fish.png")
+Cider = tk.PhotoImage(file = "D:/python/python-anno1404/images/Cider.png")
+Spices = tk.PhotoImage(file = "D:/python/python-anno1404/images/Spices.png")
+Linen_garments = tk.PhotoImage(file = "D:/python/python-anno1404/images/Linen_garments.png")
+Bread = tk.PhotoImage(file = "D:/python/python-anno1404/images/Bread.png")
+Beer = tk.PhotoImage(file = "D:/python/python-anno1404/images/Beer.png")
+Leather_jerkins = tk.PhotoImage(file = "D:/python/python-anno1404/images/Leather_jerkins.png")
+Books = tk.PhotoImage(file = "D:/python/python-anno1404/images/Books.png")
+Meat = tk.PhotoImage(file = "D:/python/python-anno1404/images/Meat.png")
+Fur_coats = tk.PhotoImage(file = "D:/python/python-anno1404/images/Fur_coats.png")
+Wine = tk.PhotoImage(file = "D:/python/python-anno1404/images/Wine.png")
+Glasses = tk.PhotoImage(file = "D:/python/python-anno1404/images/Glasses.png")
+Candlestick = tk.PhotoImage(file = "D:/python/python-anno1404/images/Candlestick.png")
+Brocade_robes = tk.PhotoImage(file = "D:/python/python-anno1404/images/Brocade_robes.png")
 
 # Create ToolTip
 class CreateToolTip(object):
@@ -161,9 +181,10 @@ tab1 = ttk.Frame(tabControl)            # Create a tab
 tabControl.add(tab1, text = "牧豬")      # Add the tab
 tab2 = ttk.Frame(tabControl)            # Add a second tab
 tabControl.add(tab2, text = "貴豬")      # Make second tab visible
-# tabControl.pack(expand = 1, fill = "both")
 tabControl.grid(row = 0, column = 0)
 
+
+#####     牧豬區     #####
 
 # Tab1控件
 monty1 = ttk.LabelFrame(tab1, text = "牧豬養成計畫") # 輸入區
@@ -177,7 +198,7 @@ monty3.grid(row = 1, column = 0, padx = 8, pady = 4)
     # Tab1內部配置
     ## 輸入區(monty1) ##
     # Radio Button
-def convert0(Rbtn1):
+def convert1(Rbtn1):
     Rbtn1 = Rbtn1.get()
 
 Rbtn1 = tk.IntVar()
@@ -188,7 +209,7 @@ Nomads_RadioP = ttk.Radiobutton(monty1, value = 1, variable = Rbtn1).grid(row = 
 Nomads_RadioH = ttk.Radiobutton(monty1, value = 2, variable = Rbtn1).grid(row = 2, column = 2, padx = 5, pady = 5)
 Envoys_RadioP = ttk.Radiobutton(monty1, value = 1, variable = Rbtn1).grid(row = 1, column = 6, padx = 5, pady = 5)
 Envoys_RadioH = ttk.Radiobutton(monty1, value = 2, variable = Rbtn1).grid(row = 2, column = 6, padx = 5, pady = 5)
-Rbtn1.trace("w", lambda name, index, mode, Rbtn1 = Rbtn1: convert0(Rbtn1))
+Rbtn1.trace("w", lambda name, index, mode, Rbtn1 = Rbtn1: convert1(Rbtn1))
     
     # Separator
 Separator1 = ttk.Separator(monty1, orient = "vertical").grid(row = 1, column = 1, rowspan = 2, sticky = "ns")
@@ -196,7 +217,7 @@ Separator2 = ttk.Separator(monty1, orient = "vertical").grid(row = 1, column = 5
     
     # Input  
         # PQ.HQ convert by Radiobutton def
-def convert(*args):
+def convert2(*args):
     try:
         if Rbtn1.get() == 1:
             InputNHQ.set((InputNPQ.get())/15)
@@ -209,16 +230,16 @@ def convert(*args):
 
 InputNPQ = tk.IntVar()
 InputNPQ.set(0)
-InputNPQ.trace("w", lambda name, index, mode, InputNPQ = InputNPQ: convert(InputNPQ))
+InputNPQ.trace("w", lambda name, index, mode, InputNPQ = InputNPQ: convert2(InputNPQ))
 InputNHQ = tk.IntVar()
 InputNHQ.set(0)
-InputNHQ.trace("w", lambda name, index, mode, InputNHQ = InputNHQ: convert(InputNHQ))
+InputNHQ.trace("w", lambda name, index, mode, InputNHQ = InputNHQ: convert2(InputNHQ))
 InputEPQ = tk.IntVar()
 InputEPQ.set(0)
-InputEPQ.trace("w", lambda name, index, mode, InputEPQ = InputEPQ: convert(InputEPQ))
+InputEPQ.trace("w", lambda name, index, mode, InputEPQ = InputEPQ: convert2(InputEPQ))
 InputEHQ = tk.IntVar()
 InputEHQ.set(0)
-InputEHQ.trace("w", lambda name, index, mode, InputEHQ = InputEHQ: convert(InputEHQ))
+InputEHQ.trace("w", lambda name, index, mode, InputEHQ = InputEHQ: convert2(InputEHQ))
 Nomads_PQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariable = InputNPQ).grid(row = 1, column = 4, padx = 5, pady = 5)
 Nomads_HQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariable = InputNHQ).grid(row = 2, column = 4, padx = 5, pady = 5)
 Envoys_PQEntry = tk.Entry(monty1, font = fontsize, width = 6, bd = 3, textvariable = InputEPQ).grid(row = 1, column = 8, padx = 5, pady = 5)
@@ -240,15 +261,15 @@ Nomads1TT = CreateToolTip(Nomads1, "牧民")
 Envoys1TT = CreateToolTip(Envoys1, "牧主")
 
 
-    # caculate1 計算牧民系統
+    # caculate1 計算牧豬系統
 Caculate_Orient = tk.Button(monty1, font = fontsize, text = "Go！", command = Caculate_Orient_Go).grid(row = 2, column = 9, padx = 5, pady = 5)
 
     ## 輸入區(monty1) end ##
 
     ## 輸出區(monty2) ##    
     # 設定
-Persent = ["DatesPersent", "MilkPersent", "CarpetsPersent", "CoffeePersent", "Pearl_necklacesPersent", "PerfumePersent", "MarzipanPersent"]
-Persent = tk.StringVar()
+Persent1 = ["DatesPersent", "MilkPersent", "CarpetsPersent", "CoffeePersent", "Pearl_necklacesPersent", "PerfumePersent", "MarzipanPersent"]
+Persent1 = tk.StringVar()
 ChosenValues = ["0%", "25%", "50%", "75%"]
     
     # Chosen
@@ -406,6 +427,23 @@ Envoys2TT = CreateToolTip(Envoys2, "牧主")
     ## 列表區(monty3) end ##
 
 
+#####     牧豬區 end     #####
+
+#####     貴豬區     #####
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####     貴豬區 end     #####
 
 root.mainloop()
 
