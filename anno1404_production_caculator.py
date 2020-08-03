@@ -1,8 +1,39 @@
 import tkinter as tk
 import tkinter.font as tkFont
-import math
 from tkinter import ttk
 import time
+import base64
+import os
+from Beer_png import img as Beer
+from Begger_png import img as Begger
+from Books_png import img as Books
+from Bread_png import img as Bread
+from Brocade_robes_png import img as Brocade_robes
+from Candlestick_png import img as Candlestick
+from Carpets_png import img as Carpets
+from Cider_png import img as Cider
+from Citizens_png import img as Citizens
+from Coffee_png import img as Coffee
+from Dates_png import img as Dates
+from Envoys_png import img as Envoys
+from Fish_png import img as Fish
+from Fur_coats_png import img as Fur_coats
+from Glasses_png import img as Glasses
+from House_png import img as House
+from Leather_jerkins_png import img as Leather_jerkins
+from Linen_garments_png import img as Linen_garments
+from Marzipan_png import img as Marzipan
+from Meat_png import img as Meat
+from Milk_png import img as Milk
+from Nobleman_png import img as Nobleman
+from Nomads_png import img as Nomads
+from Patrician_png import img as Patrician
+from Pearl_necklaces_png import img as Pearl_necklaces
+from Peasants_png import img as Peasants
+from People_png import img as People
+from Perfume_png import img as Perfume
+from Spices_png import img as Spices
+from Wine_png import img as Wine
 
 
 root = tk.Tk()
@@ -12,43 +43,107 @@ fontsize = tkFont.Font(family = "Source Han Sans", size = 14)
 root.title("Anno 1404 caculator")
 root.resizable(0,0)
 root.geometry("1235x900")
-root.iconbitmap(r"D:/python/python-anno1404/images/anno1404_icon.ico")
+root.iconbitmap(r"D:/python/python-anno1404/anno1404-production-caculator/images/anno1404_icon.ico")
 
 # 載入圖片
-People_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/People.png")
-House_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/House.png")
+    # write file
+with open("Beer.png", mode = "wb") as file:
+    file.write(base64.b64decode(Beer))
+with open("Begger.png", mode = "wb") as file:
+    file.write(base64.b64decode(Begger))
+with open("Books.png", mode = "wb") as file:
+    file.write(base64.b64decode(Books))
+with open("Bread.png", mode = "wb") as file:
+    file.write(base64.b64decode(Bread))
+with open("Brocade_robes.png", mode = "wb") as file:
+    file.write(base64.b64decode(Brocade_robes))
+with open("Candlestick.png", mode = "wb") as file:
+    file.write(base64.b64decode(Candlestick))
+with open("Carpets.png", mode = "wb") as file:
+    file.write(base64.b64decode(Carpets))
+with open("Cider.png", mode = "wb") as file:
+    file.write(base64.b64decode(Cider))
+with open("Citizens.png", mode = "wb") as file:
+    file.write(base64.b64decode(Citizens))
+with open("Coffee.png", mode = "wb") as file:
+    file.write(base64.b64decode(Coffee))
+with open("Dates.png", mode = "wb") as file:
+    file.write(base64.b64decode(Dates))
+with open("Envoys.png", mode = "wb") as file:
+    file.write(base64.b64decode(Envoys))
+with open("Fish.png", mode = "wb") as file:
+    file.write(base64.b64decode(Fish))
+with open("Fur_coats.png", mode = "wb") as file:
+    file.write(base64.b64decode(Fur_coats))
+with open("Glasses.png", mode = "wb") as file:
+    file.write(base64.b64decode(Glasses))
+with open("House.png", mode = "wb") as file:
+    file.write(base64.b64decode(House))
+with open("Leather_jerkins.png", mode = "wb") as file:
+    file.write(base64.b64decode(Leather_jerkins))
+with open("Linen_garments.png", mode = "wb") as file:
+    file.write(base64.b64decode(Linen_garments))
+with open("Marzipan.png", mode = "wb") as file:
+    file.write(base64.b64decode(Marzipan))
+with open("Meat.png", mode = "wb") as file:
+    file.write(base64.b64decode(Meat))
+with open("Milk.png", mode = "wb") as file:
+    file.write(base64.b64decode(Milk))
+with open("Nobleman.png", mode = "wb") as file:
+    file.write(base64.b64decode(Nobleman))
+with open("Nomads.png", mode = "wb") as file:
+    file.write(base64.b64decode(Nomads))
+with open("Patrician.png", mode = "wb") as file:
+    file.write(base64.b64decode(Patrician))
+with open("Pearl_necklaces.png", mode = "wb") as file:
+    file.write(base64.b64decode(Pearl_necklaces))
+with open("Peasants.png", mode = "wb") as file:
+    file.write(base64.b64decode(Peasants))
+with open("People.png", mode = "wb") as file:
+    file.write(base64.b64decode(People))
+with open("Perfume.png", mode = "wb") as file:
+    file.write(base64.b64decode(Perfume))
+with open("Spices.png", mode = "wb") as file:
+    file.write(base64.b64decode(Spices))
+with open("Wine.png", mode = "wb") as file:
+    file.write(base64.b64decode(Wine))
 
-    # 牧主
-Nomads_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Nomads.png")
-Envoys_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Envoys.png")
-Dates_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Dates.png")
-Milk_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Milk.png")
-Carpets_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Carpets.png")
-Coffee_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Coffee.png")
-Pearl_necklaces_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Pearl_necklaces.png")
-Perfume_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Perfume.png")
-Marzipan_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Marzipan.png")
+    # load image
+        # all
+People_image = tk.PhotoImage(file = "People.png")
+House_image = tk.PhotoImage(file = "House.png")
 
-    # 貴族
-Begger_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Begger.png")
-Peasants_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Peasants.png")
-Citizens_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Citizens.png")
-Patrician_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Patrician.png")
-Nobleman_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Nobleman.png")
-Fish_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Fish.png")
-Cider_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Cider.png")
-Spices_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Spices.png")
-Linen_garments_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Linen_garments.png")
-Bread_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Bread.png")
-Beer_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Beer.png")
-Leather_jerkins_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Leather_jerkins.png")
-Books_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Books.png")
-Meat_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Meat.png")
-Fur_coats_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Fur_coats.png")
-Wine_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Wine.png")
-Glasses_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Glasses.png")
-Candlestick_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Candlestick.png")
-Brocade_robes_image = tk.PhotoImage(file = "D:/python/python-anno1404/images/Brocade_robes.png")
+        # 牧主
+Nomads_image = tk.PhotoImage(file = "Nomads.png")
+Envoys_image = tk.PhotoImage(file = "Envoys.png")
+Dates_image = tk.PhotoImage(file = "Dates.png")
+Milk_image = tk.PhotoImage(file = "Milk.png")
+Carpets_image = tk.PhotoImage(file = "Carpets.png")
+Coffee_image = tk.PhotoImage(file = "Coffee.png")
+Pearl_necklaces_image = tk.PhotoImage(file = "Pearl_necklaces.png")
+Perfume_image = tk.PhotoImage(file = "Perfume.png")
+Marzipan_image = tk.PhotoImage(file = "Marzipan.png")
+
+        # 貴族
+Begger_image = tk.PhotoImage(file = "Begger.png")
+Peasants_image = tk.PhotoImage(file = "Peasants.png")
+Citizens_image = tk.PhotoImage(file = "Citizens.png")
+Patrician_image = tk.PhotoImage(file = "Patrician.png")
+Nobleman_image = tk.PhotoImage(file = "Nobleman.png")
+Fish_image = tk.PhotoImage(file = "Fish.png")
+Cider_image = tk.PhotoImage(file = "Cider.png")
+Spices_image = tk.PhotoImage(file = "Spices.png")
+Linen_garments_image = tk.PhotoImage(file = "Linen_garments.png")
+Bread_image = tk.PhotoImage(file = "Bread.png")
+Beer_image = tk.PhotoImage(file = "Beer.png")
+Leather_jerkins_image = tk.PhotoImage(file = "Leather_jerkins.png")
+Books_image = tk.PhotoImage(file = "Books.png")
+Meat_image = tk.PhotoImage(file = "Meat.png")
+Fur_coats_image = tk.PhotoImage(file = "Fur_coats.png")
+Wine_image = tk.PhotoImage(file = "Wine.png")
+Glasses_image = tk.PhotoImage(file = "Glasses.png")
+Candlestick_image = tk.PhotoImage(file = "Candlestick.png")
+Brocade_robes_image = tk.PhotoImage(file = "Brocade_robes.png")
 
 # Create ToolTip
 class CreateToolTip(object):
@@ -1134,6 +1229,37 @@ Nobleman2TT = CreateToolTip(Nobleman2, "貴族")
 
 #####     貴族區 end     #####
 
+
+os.remove("Beer.png")
+os.remove("Begger.png")
+os.remove("Books.png")
+os.remove("Bread.png")
+os.remove("Brocade_robes.png")
+os.remove("Candlestick.png")
+os.remove("Carpets.png")
+os.remove("Cider.png")
+os.remove("Citizens.png")
+os.remove("Coffee.png")
+os.remove("Dates.png")
+os.remove("Envoys.png")
+os.remove("Fish.png")
+os.remove("Fur_coats.png")
+os.remove("Glasses.png")
+os.remove("House.png")
+os.remove("Leather_jerkins.png")
+os.remove("Linen_garments.png")
+os.remove("Marzipan.png")
+os.remove("Meat.png")
+os.remove("Milk.png")
+os.remove("Nobleman.png")
+os.remove("Nomads.png")
+os.remove("Patrician.png")
+os.remove("Pearl_necklaces.png")
+os.remove("Peasants.png")
+os.remove("People.png")
+os.remove("Perfume.png")
+os.remove("Spices.png")
+os.remove("Wine.png")
 
 
 root.mainloop()
